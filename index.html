@@ -12,13 +12,13 @@
     </header>
     <main>
         <div class="container">          
-            <form class="p-3 shadow">
+            <form class="p-3 shadow" id="form" onsubmit="selecionarInputs(event)">
               <div class="d-flex justify-content-center" id="btn-limpar">
-              <button class="btn btn-primary">Limpar</button>
+              <button class="btn btn-primary" onclick="limparFormulario()">Limpar</button>
             </div>
               <div class="mb-3">
                 <label for="ano" class="form-label">Ano</label>
-                <select type="text" class="form-select" id="ano">
+                <select type="text" class="form-select" id="ano" required>
                   <option value=""></option>
                   <option value="primeiro">1º Ano</option>
                   <option value="segundo">2º Ano</option>
@@ -32,8 +32,8 @@
                   </select>
               </div>
               <div class="mb-3">
-                <label for="disciplina" class="form-label">Disciplina:</label>
-                <select type="text" class="form-control" id="disciplina" name="disciplina">
+                <label for="disciplina" class="form-label">Disciplina</label>
+                <select type="text" class="form-select" id="disciplina" name="Disciplina" required>
                   <option value=""></option>
                   <option value="lingua_portuguesa">Português</option>
                   <option value="matematica">Matemática</option>
@@ -48,53 +48,56 @@
                 </select>
               </div>                 
                 <div class="mb-3">
-                  <label for="disciplina" class="form-label">Unidade Temática:</label>
-                  <select type="text" class="form-control" id="unidadeTematica">
+                  <label for="disciplina" class="form-label">Unidade Temática</label>
+                  <select type="text" class="form-control" id="unidadeTematica" name="Unidade Temática" required>
 
                   </select>
                 </div>
                 <div class="mb-3">
-                  <label for="habilidades" class="form-label"> Habilidades: </label>                    
-                      <select class="form-select" id="habilidades" name="habilidades">                          
+                  <label for="habilidades" class="form-label"> Habilidades </label>                    
+                      <select class="form-select" id="habilidades" name="Habilidades" required>                          
                       </select>             
                 </div> 
                 <div class="mb-3">
-                  <label for="praticas-linguagem" class="form-label">Práticas de Linguagem:</label>
-                  <input type="text" class="form-control" id="praticas-linguagem" name="praticas-linguagem">
+                  <label for="praticas-linguagem" class="form-label">Práticas de Linguagem</label>
+                  <input type="text" class="form-control" id="praticas-linguagem" name="Práticas de Linguagem">
                 </div>
                 <div class="mb-3">
-                  <label for="objetos-conhecimento" class="form-label">Objeto de Conhecimento:</label>
-                  <select type="text" class="form-control" id="objetos-conhecimento" name="objetos-conhecimento">
-
+                  <label for="objetos-conhecimento" class="form-label">Objeto de Conhecimento</label>
+                  <select type="text" class="form-select" id="objetos-conhecimento" name="Objetos de Conhecimento"  required>
                   </select>
                 </div>
                 <div class="mb-3">
-                  <label for="objetivos" class="form-label">Objetivos:</label>
-                  <input type="text" class="form-control" id="objetivos" name="objetivos">
+                  <label for="objetivos" class="form-label">Objetivo</label>
+                  <input type="text" class="form-control" id="objetivos" name="Objetivo(s)" required>
                 </div>
                 <div class="mb-3">
-                  <label for="conteudo" class="form-label">Conteúdo:</label>
-                  <textarea class="form-control" id="conteudo" name="conteudo" rows="3"></textarea>
+                  <p for="recursos" class="form-label" id="recursos-didaticos">Recursos Didáticos</p><br>
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="recurso 1">Lousa</label>
+                    <input class="form-check-input recurso" id="recurso 1" type="checkbox" value="Lousa" name="Recurso Didático">                    
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="recurso 2" >Som</label>
+                    <input class="form-check-input recurso" id="recurso 2" type="checkbox" value="Som" name="Recurso Didático">
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="recurso 3">Livro Didático</label>
+                    <input class="form-check-input recurso" id="recurso 3" type="checkbox" value="Livro Didático" name="Recurso Didático">
+                  </div>
+                </div>
+                <div class="mb-3" id="novoRecurso">                  
                 </div>
                 <div class="mb-3">
-                  <label for="recursos-didaticos" class="form-label">Recursos Didáticos (Selecionados):</label>
-                  <select class="form-select" id="recursos-didaticos" name="recursos-didaticos">
-                    <option value="recurso1">Recurso 1</option>
-                    <option value="recurso2">Recurso 2</option>
-                    <option value="recurso3">Recurso 3</option>
-                  </select>
+                  <button type="button" class="btn btn-primary" onclick="novoRecurso()"> Adicionar Novo Recurso</button><br>
                 </div>
                 <div class="mb-3">
-                  <label for="novo-recurso" class="form-label">Adicionar novo Recurso Didático:</label>
-                  <input type="text" class="form-control" id="novo-recurso" name="novo-recurso">
+                  <label for="metodologias" class="form-label">Metodologias</label>
+                  <textarea class="form-control" id="metodologias" rows="3" name="Metodologias" required></textarea>
                 </div>
                 <div class="mb-3">
-                  <label for="metodologias" class="form-label">Metodologias:</label>
-                  <textarea class="form-control" id="metodologias" name="metodologias" rows="3"></textarea>
-                </div>
-                <div class="mb-3">
-                  <label for="avaliacao" class="form-label">Avaliação:</label>
-                  <textarea class="form-control" id="avaliacao" name="avaliacao" rows="3"></textarea>
+                  <label for="avaliacao" class="form-label">Avaliação</label>
+                  <textarea class="form-control" id="avaliacao" rows="3"  name="Avaliacao" required></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Enviar</button>
               </form>
