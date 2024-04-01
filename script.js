@@ -1,7 +1,19 @@
-const ano = document.getElementById("ano");
-const disciplina = document.getElementById("disciplina");
 const objConhecimento = document.getElementById("objetos-conhecimento");
 const formulario = document.getElementById("form");
+const nomeProfessor = document.getElementById("nome-professor").value;
+const turma = document.getElementById("turma").value;
+const instituicao = document.getElementById("Instituição").value;
+const ano = document.getElementById("ano").value;
+const disciplina = document.getElementById("disciplina").value;
+const unidadeTematica = document.getElementById("unidadeTematica").value;
+const habilidades = document.getElementById("habilidades").value;
+const praticasLinguagem = document.getElementById("praticas-linguagem").value;
+const objetosConhecimento = document.getElementById("objetos-conhecimento").value;
+const objetivos = document.getElementById("objetivos").value;
+const recursosDidaticos = [];
+const novoRec = document.getElementById("novoRec");
+const metodologias = document.getElementById("metodologias").value;
+const avaliacao = document.getElementById("avaliacao").value;
 
 function novoRecurso() {
   let qtdInput = 1;
@@ -17,36 +29,48 @@ function novoRecurso() {
   console.log(inputRecurso);
 }
 
-function selecionarInputs(e) {
-  e.preventDefault();
-  const form = document.getElementById("form");
-  const data = new FormData(form);
+function redirecionar(event) {
 
-  for (let pair of data.entries()) {
-    console.log(pair[0] + ": " + pair[1]);
-  }
+  event.preventDefault();
 
-  const checksRecursos = document.querySelectorAll(
-    'input[type="checkbox"]:checked'
-  );
-  let nomesRecursos = [];
-  let novosRecursos = document.querySelector("#novoRec");
-
-  checksRecursos.forEach(function (checkbox) {
-    nomesRecursos.push(checkbox.value);
-    if (novosRecursos) {
-      nomesRecursos.push(novosRecursos.value);
+  document.querySelectorAll(".recurso:checked").forEach(function (recurso) {
+    recursosDidaticos.push(recurso.value);
+    
+    if (novoRec) {
+      recursosDidaticos.push(novoRec.value);
     }
-  });
 
-  console.log(nomesRecursos);
+  });
+ 
+  const dadosFormulario = {
+    professor: nomeProfessor,
+    turma: turma,
+    instituicao: instituicao,
+    ano: ano,
+    disciplina: disciplina,
+    unidadeTematica: unidadeTematica,
+    habilidades: habilidades,
+    praticasLinguagem: praticasLinguagem,
+    objetosConhecimento: objetosConhecimento,
+    objetivos: objetivos,
+    recursosDidaticos: recursosDidaticos,
+    metodologias: metodologias,
+    avaliacao: avaliacao,
+  };
+
+  const json = JSON.stringify(dadosFormulario);
+
+  window.location.href =
+    "tabela.html?dados=" + encodeURIComponent(json);
 }
 
-function limparFormulario() {
-  formulario.reset();
+function recarregarFormulario() {
+  location.reload();
 }
 
 async function listarUnidadesTematicas() {
+  const disciplina = document.getElementById("disciplina");
+  const ano = document.getElementById("ano");
   const selDisciplina = disciplina.value;
   const selAno = ano.value;
 
@@ -81,6 +105,8 @@ async function listarUnidadesTematicas() {
 }
 
 function listarHabilidades() {
+  const disciplina = document.getElementById("disciplina");
+
   const selDisciplina = disciplina.value;
   console.log(selDisciplina);
 
@@ -113,6 +139,8 @@ function listarObjetoConhecimento() {
   const listaObjetoConhecimento = document.getElementById(
     "objetos-conhecimento"
   );
+  const ano = document.getElementById("ano");
+  const disciplina = document.getElementById("disciplina");
   const selDisciplina = disciplina.value;
   const selAno = ano.value;
 
