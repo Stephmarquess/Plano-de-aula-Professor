@@ -1,0 +1,19 @@
+main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #infos, #cabecalho {
+    display: flex;
+    flex-direction: column;
+  }
+
+  header, footer {
+    background-color: darkgreen;
+    color: white;
+
+  }
+
+  /* label {    
+    font-weight: bold;
+  } */
