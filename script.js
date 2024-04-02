@@ -1,47 +1,86 @@
-const objConhecimento = document.getElementById("objetos-conhecimento");
-const formulario = document.getElementById("form");
-const nomeProfessor = document.getElementById("nome-professor").value;
-const turma = document.getElementById("turma").value;
-const instituicao = document.getElementById("Instituição").value;
-const ano = document.getElementById("ano").value;
-const disciplina = document.getElementById("disciplina").value;
-const unidadeTematica = document.getElementById("unidadeTematica").value;
-const habilidades = document.getElementById("habilidades").value;
-const praticasLinguagem = document.getElementById("praticas-linguagem").value;
-const objetosConhecimento = document.getElementById("objetos-conhecimento").value;
-const objetivos = document.getElementById("objetivos").value;
-const recursosDidaticos = [];
-const novoRec = document.getElementById("novoRec");
-const metodologias = document.getElementById("metodologias").value;
-const avaliacao = document.getElementById("avaliacao").value;
+let qtdInput = 0;
+var valoresInputs = [];
+
+function habilitarCampos() {
+  var unidadeTematica = document.getElementById("unidadeTematica");
+  var objConhecimento = document.getElementById("objetos-conhecimento");
+  var habilidades = document.getElementById("habilidades");
+  var ano = document.getElementById("ano");
+  var disciplina = document.getElementById("disciplina");
+  var valorAno = ano.value;
+  var valorDisciplina = disciplina.value;
+  var camposDesabilitados = document.querySelectorAll("select.disabled");
+
+  camposDesabilitados.forEach(function (campo) {
+    campo.disabled = false;
+    campo.classList.remove("disabled");
+  });
+
+  if (valorAno !== "" && valorDisciplina !== "") {
+    unidadeTematica.disabled = false;
+    objConhecimento.disabled = false;
+    habilidades.disabled = false;
+  } else {
+    unidadeTematica.disabled = true;
+    objConhecimento.disabled = true;
+    habilidades.disabled = true;
+  }
+}
+
+document.getElementById("ano").addEventListener("input", habilitarCampos);
+document
+  .getElementById("disciplina")
+  .addEventListener("input", habilitarCampos);
+
+  
 
 function novoRecurso() {
-  let qtdInput = 1;
-
   const inputNovoRecurso = document.createElement("div");
-  inputNovoRecurso.innerHTML = `<label for="praticas-linguagem" class="form-label">Novo Recurso</label>
-                               <input type="text" class="form-control" id="novoRec" name="Recurso Didático">`;
+  qtdInput++;
+  inputNovoRecurso.innerHTML = `<label for="novoRec ${qtdInput}" class="form-label">Novo Recurso</label>
+                               <input type="text" class="form-control novoRec" id="novoRec ${qtdInput}" name="Recurso Didático">`;
 
   document.getElementById("novoRecurso").appendChild(inputNovoRecurso);
-  qtdInput++;
 
-  let inputRecurso = document.getElementById("novoRec");
-  console.log(inputRecurso);
+  const novoInput = inputNovoRecurso.querySelector(".novoRec");
+
+  novoInput.addEventListener("change", function () {
+    valoresInputs[qtdInput - 1] = novoInput.value;
+    console.log(valoresInputs);
+  });
 }
 
 function redirecionar(event) {
-
   event.preventDefault();
+
+  const objConhecimento = document.getElementById("objetos-conhecimento");
+  const formulario = document.getElementById("form");
+  const nomeProfessor = document.getElementById("nome-professor").value;
+  const turma = document.getElementById("turma").value;
+  const instituicao = document.getElementById("Instituição").value;
+  const ano = document.getElementById("ano").value;
+  const disciplina = document.getElementById("disciplina").value;
+  const unidadeTematica = document.getElementById("unidadeTematica").value;
+  const habilidades = document.getElementById("habilidades").value;
+  const praticasLinguagem = document.getElementById("praticas-linguagem").value;
+  const objetosConhecimento = document.getElementById(
+    "objetos-conhecimento"
+  ).value;
+  const objetivos = document.getElementById("objetivos").value;
+  const recursosDidaticos = [];
+  const novoRec = document.getElementsByClassName(".novoRec");
+  const metodologias = document.getElementById("metodologias").value;
+  const avaliacao = document.getElementById("avaliacao").value;
 
   document.querySelectorAll(".recurso:checked").forEach(function (recurso) {
     recursosDidaticos.push(recurso.value);
-    
-    if (novoRec) {
-      recursosDidaticos.push(novoRec.value);
-    }
-
   });
- 
+
+  if (novoRec) {
+    recursosDidaticos.push(...valoresInputs);
+    console.log(recursosDidaticos);
+  }
+
   const dadosFormulario = {
     professor: nomeProfessor,
     turma: turma,
@@ -60,8 +99,7 @@ function redirecionar(event) {
 
   const json = JSON.stringify(dadosFormulario);
 
-  window.location.href =
-    "tabela.html?dados=" + encodeURIComponent(json);
+  window.location.href = "tabela.html?dados=" + encodeURIComponent(json);
 }
 
 function recarregarFormulario() {
