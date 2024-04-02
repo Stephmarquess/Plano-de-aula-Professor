@@ -34,7 +34,7 @@ function gerarPDF() {
   const documento = {
       content: [
 
-          { text: 'Plano de Ensino', style: 'header', alignment: 'center' },
+          { text: 'Plano de Ensino - Fundamental', style: 'header', alignment: 'center' },
 
           {
             "nodeName": "HR",
@@ -56,15 +56,43 @@ function gerarPDF() {
               }
             ]
           },
-          { text: '\n' },
-          { text: 'Professor(a) ', style: 'subtitles'},
-          { text: dadosFormulario.professor},
-          { text: '\n' },            
-          { text: 'Turma ', style: "subtitles"},            
-          { text: dadosFormulario.turma },            
-          { text: '\n' },   
-          { text: 'Instituição ' , style: 'subtitles', margin: [0, 0, 0, 10] },
-          { text: dadosFormulario.instituicao },
+
+          { columns: [
+            [
+                { text: 'Professor(a)', style: 'subtitlesHeader' },
+                { text: dadosFormulario.professor, alignment: 'center' },                
+            ],
+            [
+                { text: 'Turma', style: 'subtitlesHeader' },
+                { text: dadosFormulario.turma, alignment: 'center' },              
+            ],
+            [
+                { text: 'Instituição', style: 'subtitlesHeader' },
+                { text: dadosFormulario.instituicao, alignment: 'center' }
+            ]
+        ]
+      },
+
+      {
+        "nodeName": "HR",
+        "margin": [
+          0,
+          12,
+          0,
+          12
+        ],
+        "canvas": [
+          {
+            "type": "line",
+            "x1": 0,
+            "y1": 0,
+            "x2": 514,
+            "y2": 0,
+            "lineWidth": 0.5,
+            "lineColor": "#000000"
+          }
+        ]
+      },
           { text: '\n' },   
           { text: 'Disciplina ' , style: 'subtitles'},
           { text: dadosFormulario.disciplina.toUpperCase() },
@@ -97,6 +125,13 @@ function gerarPDF() {
               fontSize: 30,
               bold: true,
 
+          },
+
+          subtitlesHeader: {
+            fontSize: 14,
+            bold: true,            
+            alignment: 'center',
+            margin: [0, 0, 0, 10]
           },
 
           subtitles: {
