@@ -17,6 +17,7 @@ function renderizarDados() {
     document.getElementById('info-habilidades').textContent = dadosFormulario.habilidades;
     document.getElementById('info-praticas').textContent = dadosFormulario.praticasLinguagem;
     document.getElementById('info-objeto-conhecimento').textContent = dadosFormulario.objetosConhecimento;  
+    document.getElementById('info-objetivos').textContent = dadosFormulario.objetivos;  
     document.getElementById('info-recursos').textContent = dadosFormulario.recursosDidaticos;  
     document.getElementById('info-metodologias').textContent = dadosFormulario.metodologias;
     document.getElementById('info-avaliação').textContent = dadosFormulario.avaliacao;
