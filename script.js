@@ -1,15 +1,17 @@
 let qtdInput = 0;
 var valoresInputs = [];
+var unidadeTematica = document.getElementById("unidadeTematica");
+var objConhecimento = document.getElementById("objetos-conhecimento");
+var habilidades = document.getElementById("habilidades");
+var camposDesabilitados = document.querySelectorAll("select.disabled");
 
 function habilitarCampos() {
-  var unidadeTematica = document.getElementById("unidadeTematica");
-  var objConhecimento = document.getElementById("objetos-conhecimento");
-  var habilidades = document.getElementById("habilidades");
+
   var ano = document.getElementById("ano");
   var disciplina = document.getElementById("disciplina");
   var valorAno = ano.value;
   var valorDisciplina = disciplina.value;
-  var camposDesabilitados = document.querySelectorAll("select.disabled");
+
 
   camposDesabilitados.forEach(function (campo) {
     campo.disabled = false;
@@ -26,6 +28,7 @@ function habilitarCampos() {
     habilidades.disabled = true;
   }
 }
+
 
 function novoRecurso() {
   const inputNovoRecurso = document.createElement("div");
@@ -69,8 +72,7 @@ function redirecionar(event) {
   });
 
   if (novoRec) {
-    recursosDidaticos.push(...valoresInputs);
-    console.log(recursosDidaticos);
+    recursosDidaticos.push(...valoresInputs);    
   }
 
   const dadosFormulario = {
@@ -103,8 +105,7 @@ async function listarUnidadesTematicas() {
   const ano = document.getElementById("ano");
   const selDisciplina = disciplina.value;
   const selAno = ano.value;
-
-  console.log(selAno);
+  const erro = document.getElementById("erro");
 
   if (selDisciplina !== "" && selAno !== "") {
     try {
@@ -120,7 +121,7 @@ async function listarUnidadesTematicas() {
       }
 
       if (Array.isArray(dados.unidades_tematicas)) {
-        console.log(dados);
+  
         dados.unidades_tematicas.forEach((data) => {
           const opcaoTematica = document.createElement("option");
           opcaoTematica.value = data.nome_unidade;
@@ -129,7 +130,16 @@ async function listarUnidadesTematicas() {
         });
       }
     } catch (error) {
-      console.error("Erro ao buscar dados da API:", error);
+      erro.innerHTML = `<div class="alert alert-warning" role="alert">
+      Erro ao buscar dados na API. Aguarde uns minutos e atualize a página para tentar novamente.
+    </div>`
+    
+      unidadeTematica.disabled = true;
+      objConhecimento.disabled = true;
+      habilidades.disabled = true;
+    
+
+      console.error("Erro ao buscar dados da API: aguarde alguns minutos e atualize a página ", error);
     }
   }
 }

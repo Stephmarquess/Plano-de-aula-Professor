@@ -8,8 +8,6 @@ function listarDados() {
 
   if (typeof URLSearchParams !== 'undefined') {
 
-    console.log(dadosFormulario);
-
     document.getElementById('info-professor').textContent = dadosFormulario.professor;
     document.getElementById('info-turma').textContent = dadosFormulario.turma;
     document.getElementById('info-instituição').textContent = dadosFormulario.instituicao;
@@ -27,7 +25,7 @@ function listarDados() {
 
     else {
       
-      console.log("não deu certo");
+      console.log("Erro ao listar os dados. Tentar novamente");
 }
 }    
 

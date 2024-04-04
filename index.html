@@ -29,6 +29,9 @@
     </header>
     <main class="mt-3 mb-5">
       <div class="container p-5">
+        <div id="erro">
+
+        </div>
         <form id="form" onsubmit="redirecionar(event)">
           <div class="row">
             <div class="col mb-3">
@@ -315,10 +318,10 @@
                 </button>
                 <button
                   type="button"
-                  class="btn btn-primary"
+                  class="btn btn-success"
                   onclick="redirecionar(event)"
                 >
-                  Enviar
+                  Finalizar
                 </button>
               </div>
             </div>
@@ -327,13 +330,8 @@
       </div>
     </main>
     <footer>
-      <div class="container justify-content-center">
-        <span class="fs-2" style="display: flex; flex-direction: column">
-          <img src="./assets/mortarboard.png" class="logo" />
-          <span> Meu Plano de Ensino </span>
-        </span>
-      </div>
-    </footer>
+
+  </footer>
     <script src="./script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
