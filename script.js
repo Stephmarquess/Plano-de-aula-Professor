@@ -4,6 +4,7 @@ var unidadeTematica = document.getElementById("unidadeTematica");
 var objConhecimento = document.getElementById("objetos-conhecimento");
 var habilidades = document.getElementById("habilidades");
 var camposDesabilitados = document.querySelectorAll("select.disabled");
+const erro = document.getElementById("erro");
 
 function habilitarCampos() {
 
@@ -42,7 +43,6 @@ function novoRecurso() {
 
   novoInput.addEventListener("change", function () {
     valoresInputs[qtdInput - 1] = novoInput.value;
-    console.log(valoresInputs);
   }); 
 
 }
@@ -105,7 +105,7 @@ async function listarUnidadesTematicas() {
   const ano = document.getElementById("ano");
   const selDisciplina = disciplina.value;
   const selAno = ano.value;
-  const erro = document.getElementById("erro");
+
 
   if (selDisciplina !== "" && selAno !== "") {
     try {
@@ -137,9 +137,7 @@ async function listarUnidadesTematicas() {
       unidadeTematica.disabled = true;
       objConhecimento.disabled = true;
       habilidades.disabled = true;
-    
-
-      console.error("Erro ao buscar dados da API: aguarde alguns minutos e atualize a página ", error);
+  
     }
   }
 }
@@ -148,7 +146,6 @@ function listarHabilidades() {
   const disciplina = document.getElementById("disciplina");
 
   const selDisciplina = disciplina.value;
-  console.log(selDisciplina);
 
   if (selDisciplina !== "") {
     fetch(
@@ -170,7 +167,14 @@ function listarHabilidades() {
         });
       })
       .catch((error) => {
-        console.error("Erro ao buscar dados da API:", error);
+        erro.innerHTML = `<div class="alert alert-warning" role="alert">
+        Erro ao buscar dados na API. Aguarde uns minutos e atualize a página para tentar novamente.
+      </div>`
+      
+        unidadeTematica.disabled = true;
+        objConhecimento.disabled = true;
+        habilidades.disabled = true;
+    
       });
   }
 }
@@ -213,7 +217,13 @@ function listarObjetoConhecimento() {
         }
       })
       .catch((error) => {
-        console.error("Erro ao buscar dados da API:", error);
+        erro.innerHTML = `<div class="alert alert-warning" role="alert">
+        Erro ao buscar dados na API. Aguarde uns minutos e atualize a página para tentar novamente.
+      </div>`
+      
+        unidadeTematica.disabled = true;
+        objConhecimento.disabled = true;
+        habilidades.disabled = true;
       });
   }
 }
@@ -237,19 +247,18 @@ function renderizarDados() {
     document.getElementById('info-disciplina').textContent = document.getElementById("disciplina").value.toUpperCase();
     document.getElementById('info-unidade-temática').textContent = document.getElementById("unidadeTematica").value;
     document.getElementById('info-habilidades').textContent =  document.getElementById("habilidades").value;
-    document.getElementById('info-praticas').textContent = document.getElementById("habilidades").value;
+    document.getElementById('info-praticas').textContent = document.getElementById("praticas-linguagem").value;
     document.getElementById('info-objeto-conhecimento').textContent = document.getElementById("objetos-conhecimento").value;  
     document.getElementById('info-objetivos').textContent = document.getElementById("objetivos").value;       
     document.getElementById('info-recursos').textContent = recursosDidaticos;           
     document.getElementById('info-metodologias').textContent = document.getElementById("metodologias").value;
     document.getElementById('info-avaliação').textContent = document.getElementById("avaliacao").value;
 
-    console.log(recursosDidaticos);
     }     
 
     else {
       
-      console.log("não deu certo");
+      console.log("Não foi possível capturar valores input");
 }
 }
   

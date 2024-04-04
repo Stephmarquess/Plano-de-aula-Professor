@@ -67,7 +67,7 @@
         <span class="fs-5 legenda"> Avaliação </span>
         <span id="info-avaliação"></span>
       </div>
-      <div class="d-flex justify-content-center gap-5">
+      <div class="d-flex justify-content-center gap-5 mt-5" id="botoes">
         <button class="btn btn-success" onclick="gerarPDF()">Gerar PDF</button>
         <a href="index.html"
           ><button class="btn btn-dark">Novo plano de Ensino</button></a
@@ -75,8 +75,23 @@
       </div>
     </main>
     <footer>
-
-  </footer>
+      <div class="div d-flex flex-column" id="footer-info">
+        <img src="./assets/mortarboard.png" class="logo" />
+        <span class="mt-2">Desenvolvido por: Stéfany Marques</span>
+      </div>
+      <br />
+      <div id="footer-links">
+        <a href="https://github.com/Stephmarquess/" target="_blank"
+          ><img src="./assets/logoGitHub.png" class="logo"
+        /></a>
+        <a href="https://linkedin.com/in/stefany-marques" target="_blank"
+          ><img src="./assets/logoLinkedin.png" class="logo"
+        /></a>
+        <a href="mailto:smouramkt@gmail.com"
+          ><img src="./assets/logoEmail.png" class="logo"
+        /></a>
+      </div>
+    </footer>
     <script src="./dados.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
   </body>

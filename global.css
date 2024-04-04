@@ -1,40 +1,42 @@
-
 * {
-  font-family: "Raleway", sans-serif;;
+  font-family: "Raleway", sans-serif;
+  ;
 }
 
 main {
-    display: flex;
-    flex-direction: column;
-  }
+  display: flex;
+  flex-direction: column;
+}
 
-  #infos, #cabecalho {
-    display: flex;
-    flex-direction: column;
-  }
+#infos {
+  display: flex;
+  flex-direction: column;
+}
 
-  header, footer {
-    background-color: darkgreen;
-    color: white;   
+#cabecalho {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
 
-  }
+header,
+footer {
+  background-color: darkgreen;
+  color: white;
 
-  #cabecalho {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin-bottom: 20px;
-  }
+}
 
-  .infos-cabecalho {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  label {    
-    font-weight: bold;
-  }
+
+.infos-cabecalho {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+label {
+  font-weight: bold;
+}
 
 .legenda {
   margin-bottom: 5px;
@@ -46,4 +48,55 @@ main {
   max-height: 90px;
   max-width: 100px;
   margin: auto;
+}
+
+footer {
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  bottom: 0;
+  width: 100%;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+footer img {
+  height: 30px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 926px) {
+
+  #cabecalho {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+
+  #cabecalho div {
+    margin-top: 20px;
+  }
+
+  #botoes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+  }
+
+  #cabecalho-form,
+  #ano-disciplina,
+  #uniTematica-objeto,
+  .modal-footer {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+
+
 }
