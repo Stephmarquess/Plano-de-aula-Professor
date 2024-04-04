@@ -4,18 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Plano de Aula Professor</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />    
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="global.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"/>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header>
       <nav class="navbar">
         <div class="container justify-content-center">
-          <span class="fs-2" style="display: flex; flex-direction: column;">
-            <img src="./assets/mortarboard.png" class="logo"/> <span> Meu Plano de Ensino </span>
+          <span class="fs-2" style="display: flex; flex-direction: column">
+            <img src="./assets/mortarboard.png" class="logo" />
+            <span> Meu Plano de Ensino </span>
           </span>
         </div>
       </nav>
@@ -37,7 +44,12 @@
             </div>
             <div class="col mb-3">
               <label for="turma" class="form-label"> Turma </label>
-              <input type="text" class="form-control shadow" id="turma" name="Turma" />
+              <input
+                type="text"
+                class="form-control shadow"
+                id="turma"
+                name="Turma"
+              />
             </div>
             <div class="col mb-3">
               <label for="Instituição" class="form-label"> Instituição </label>
@@ -52,7 +64,7 @@
           <div class="row">
             <div class="col mb-3">
               <label for="ano" class="form-label">Ano</label>
-              <select type="text" class="form-select shadow " id="ano" required>
+              <select type="text" class="form-select shadow" id="ano" required>
                 <option value=""></option>
                 <option value="primeiro">1º Ano</option>
                 <option value="segundo">2º Ano</option>
@@ -89,29 +101,33 @@
             </div>
           </div>
           <div class="row">
-          <div class="col mb-3">
-            <label for="disciplina" class="form-label">Unidade Temática</label>
-            <select
-              type="text"
-              class="form-control shadow disabled"
-              id="unidadeTematica"
-              name="Unidade Temática"
-              required
-              disabled
-            ></select>
+            <div class="col mb-3">
+              <label for="disciplina" class="form-label"
+                >Unidade Temática</label
+              >
+              <select
+                type="text"
+                class="form-control shadow disabled"
+                id="unidadeTematica"
+                name="Unidade Temática"
+                required
+                disabled
+              ></select>
+            </div>
+            <div class="col mb-3">
+              <label for="objetos-conhecimento" class="form-label">
+                Objeto de Conhecimento
+              </label>
+              <select
+                type="text"
+                class="form-select shadow disabled"
+                id="objetos-conhecimento"
+                name="Objetos de Conhecimento"
+                required
+                disabled
+              ></select>
+            </div>
           </div>
-          <div class="col mb-3">
-            <label for="objetos-conhecimento" class="form-label"> Objeto de Conhecimento </label>
-            <select
-              type="text"
-              class="form-select shadow disabled"
-              id="objetos-conhecimento"
-              name="Objetos de Conhecimento"
-              required
-              disabled
-            ></select>
-          </div>
-        </div>
           <div class="mb-3">
             <label for="habilidades" class="form-label"> Habilidades </label>
             <select
@@ -122,16 +138,16 @@
               disabled
             ></select>
           </div>
-          
+
           <div class="mb-3">
             <label for="objetivos" class="form-label">Objetivo</label>
-            <input
+            <textarea
               type="text"
               class="form-control shadow"
               id="objetivos"
               name="Objetivo(s)"
               required
-            />
+            ></textarea>
           </div>
           <div class="mb-3">
             <label for="praticas-linguagem" class="form-label"
@@ -145,10 +161,14 @@
             />
           </div>
           <div class="mb-3">
-            <label for="recursos-didaticos" class="form-label" id="recursos-didaticos">
+            <label
+              for="recursos-didaticos"
+              class="form-label"
+              id="recursos-didaticos"
+            >
               Recursos Didáticos
             </label>
-            <br>
+            <br />
             <div class="form-check form-check-inline mt-2">
               <span class="form-check-label" for="recurso 1">Lousa</span>
               <input
@@ -212,19 +232,105 @@
               required
             ></textarea>
           </div>
-          <div class="d-flex justify-content-center mt-5"><button type="submit" class="btn btn-success">Enviar</button></div>
-          <div class="d-flex mb-3 float-end" id="btn-limpar">
-            <button class="btn btn-success" onclick="recarregarFormulario()">
+          <div class="d-flex justify-content-center mt-5">
+            <button
+              type="button"
+              class="btn btn-success"
+              data-bs-toggle="modal"
+              data-bs-target="#visualizarDados"
+              onclick="renderizarDados()"
+            >
+              Continuar
+            </button>
+            <button class="btn btn-success ms-3" onclick="recarregarFormulario()">
               Limpar
             </button>
           </div>
         </form>
       </div>
+      <div id="modal">
+        <div
+          class="modal fade"
+          id="visualizarDados"
+          tabindex="-1"
+          aria-labelledby="visualizarDadosLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-header">
+                <p class="fs-1 text-center">Plano de Ensino - Fundamental</p>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <hr />
+                <div id="cabecalho">
+                  <div class="infos-cabecalho">
+                    <span class="fs-5 legenda"> Professor(a) </span>
+                    <span id="info-professor"> </span>
+                  </div>
+                  <div class="infos-cabecalho">
+                    <span class="fs-5 legenda"> Turma </span>
+                    <span id="info-turma"> </span>
+                  </div>
+                  <div class="infos-cabecalho">
+                    <span class="fs-5 legenda"> Instituição </span>
+                    <span id="info-instituição"> </span>
+                  </div>
+                </div>
+                <hr />
+                <div id="infos">
+                  <span class="fs-5 legenda"> Disciplina </span>
+                  <span id="info-disciplina"> </span>
+                  <span class="fs-5 legenda"> Unidade Temática </span>
+                  <span id="info-unidade-temática"></span>
+                  <span class="fs-5 legenda"> Habilidades </span>
+                  <span id="info-habilidades"></span>
+                  <span class="fs-5 legenda"> Práticas de Linguagem </span>
+                  <span id="info-praticas"></span>
+                  <span class="fs-5 legenda"> Objeto de conhecimento </span>
+                  <span id="info-objeto-conhecimento"></span>
+                  <span class="fs-5 legenda"> Objetivo </span>
+                  <span id="info-objetivos"></span>
+                  <span class="fs-5 legenda"> Recursos Didáticos </span>
+                  <span id="info-recursos"></span>
+                  <span class="fs-5 legenda"> Metodologias: </span>
+                  <span id="info-metodologias"></span>
+                  <span class="fs-5 legenda"> Avaliação </span>
+                  <span id="info-avaliação"></span>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Fechar
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  onclick="redirecionar(event)"
+                >
+                  Enviar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
     <footer>
       <div class="container justify-content-center">
-        <span class="fs-2" style="display: flex; flex-direction: column;">
-          <img src="./assets/mortarboard.png" class="logo"/> <span> Meu Plano de Ensino </span>
+        <span class="fs-2" style="display: flex; flex-direction: column">
+          <img src="./assets/mortarboard.png" class="logo" />
+          <span> Meu Plano de Ensino </span>
         </span>
       </div>
     </footer>

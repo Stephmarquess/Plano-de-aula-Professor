@@ -27,13 +27,6 @@ function habilitarCampos() {
   }
 }
 
-document.getElementById("ano").addEventListener("input", habilitarCampos);
-document
-  .getElementById("disciplina")
-  .addEventListener("input", habilitarCampos);
-
-  
-
 function novoRecurso() {
   const inputNovoRecurso = document.createElement("div");
   qtdInput++;
@@ -47,7 +40,8 @@ function novoRecurso() {
   novoInput.addEventListener("change", function () {
     valoresInputs[qtdInput - 1] = novoInput.value;
     console.log(valoresInputs);
-  });
+  }); 
+
 }
 
 function redirecionar(event) {
@@ -63,9 +57,7 @@ function redirecionar(event) {
   const unidadeTematica = document.getElementById("unidadeTematica").value;
   const habilidades = document.getElementById("habilidades").value;
   const praticasLinguagem = document.getElementById("praticas-linguagem").value;
-  const objetosConhecimento = document.getElementById(
-    "objetos-conhecimento"
-  ).value;
+  const objetosConhecimento = document.getElementById("objetos-conhecimento").value;
   const objetivos = document.getElementById("objetivos").value;
   const recursosDidaticos = [];
   const novoRec = document.getElementsByClassName(".novoRec");
@@ -216,12 +208,57 @@ function listarObjetoConhecimento() {
   }
 }
 
+
+function renderizarDados() {
+
+  if (typeof URLSearchParams !== 'undefined') {
+
+    const recursosDidaticos = [];      
+    const recursos = document.querySelectorAll(".recurso:checked").forEach(function (recurso) {recursosDidaticos.push(recurso.value)});        
+    const novoRec = document.getElementsByClassName(".novoRec");     
+
+    if (novoRec) {
+      recursosDidaticos.push(...valoresInputs);    
+    }
+
+    document.getElementById('info-professor').textContent = document.getElementById("nome-professor").value;
+    document.getElementById('info-turma').textContent = document.getElementById("turma").value;
+    document.getElementById('info-instituição').textContent = document.getElementById("Instituição").value;
+    document.getElementById('info-disciplina').textContent = document.getElementById("disciplina").value.toUpperCase();
+    document.getElementById('info-unidade-temática').textContent = document.getElementById("unidadeTematica").value;
+    document.getElementById('info-habilidades').textContent =  document.getElementById("habilidades").value;
+    document.getElementById('info-praticas').textContent = document.getElementById("habilidades").value;
+    document.getElementById('info-objeto-conhecimento').textContent = document.getElementById("objetos-conhecimento").value;  
+    document.getElementById('info-objetivos').textContent = document.getElementById("objetivos").value;       
+    document.getElementById('info-recursos').textContent = recursosDidaticos;           
+    document.getElementById('info-metodologias').textContent = document.getElementById("metodologias").value;
+    document.getElementById('info-avaliação').textContent = document.getElementById("avaliacao").value;
+
+    console.log(recursosDidaticos);
+    }     
+
+    else {
+      
+      console.log("não deu certo");
+}
+}
+  
+
+document.getElementById("ano").addEventListener("input", habilitarCampos);
+
+document
+  .getElementById("disciplina")
+  .addEventListener("input", habilitarCampos);
+
 document
   .getElementById("disciplina")
   .addEventListener("change", listarHabilidades);
+
 document
   .getElementById("disciplina")
   .addEventListener("change", listarUnidadesTematicas);
+
 document
   .getElementById("disciplina")
   .addEventListener("change", listarObjetoConhecimento);
+

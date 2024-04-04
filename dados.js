@@ -2,8 +2,9 @@ const urlParams = new URLSearchParams(window.location.search);
 const dadosJSON = urlParams.get('dados');
 const dadosFormulario = JSON.parse(decodeURIComponent(dadosJSON));
 const recursos = document.getElementById('info-recursos').textContent = dadosFormulario.recursosDidaticos;
+ 
 
-function renderizarDados() {
+function listarDados() {
 
   if (typeof URLSearchParams !== 'undefined') {
 
@@ -162,4 +163,4 @@ function gerarPDF() {
   
 }
 
-renderizarDados();
+listarDados();

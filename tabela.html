@@ -13,41 +13,45 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"/>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header>
       <nav class="navbar">
         <div class="container justify-content-center">
-          <span class="fs-2" style="display: flex; flex-direction: column;">
-            <img src="./assets/mortarboard.png" class="logo"/> <span> Meu Plano de Ensino </span>
+          <span class="fs-2" style="display: flex; flex-direction: column">
+            <img src="./assets/mortarboard.png" class="logo" />
+            <span> Meu Plano de Ensino </span>
           </span>
         </div>
       </nav>
     </header>
     <main class="container shadow p-5">
       <p class="fs-1 text-center">Plano de Ensino - Fundamental</p>
-
+      <hr />
       <div id="cabecalho">
         <div class="infos-cabecalho">
-        <span class="fs-5 legenda"> Professor(a) </span>
-        <span id="info-professor"> </span>
+          <span class="fs-5 legenda"> Professor(a) </span>
+          <span id="info-professor"> </span>
+        </div>
+        <div class="infos-cabecalho">
+          <span class="fs-5 legenda"> Turma </span>
+          <span id="info-turma"> </span>
+        </div>
+        <div class="infos-cabecalho">
+          <span class="fs-5 legenda"> Instituição </span>
+          <span id="info-instituição"> </span>
+        </div>
       </div>
-      <div class="infos-cabecalho"> 
-        <span class="fs-5 legenda"> Turma </span>
-        <span id="info-turma"> </span>
-      </div>
-      <div  class="infos-cabecalho"> 
-        <span class="fs-5 legenda"> Instituição </span>
-        <span id="info-instituição"> </span>
-      </div>
-      </div>
-
+      <hr />
       <div id="infos">
         <span class="fs-5 legenda"> Disciplina </span>
         <span id="info-disciplina"> </span>
         <span class="fs-5 legenda"> Unidade Temática </span>
-        <span id="info-unidade-temática"></span>   
+        <span id="info-unidade-temática"></span>
         <span class="fs-5 legenda"> Habilidades </span>
         <span id="info-habilidades"></span>
         <span class="fs-5 legenda"> Práticas de Linguagem </span>
@@ -65,13 +69,13 @@
       </div>
       <div class="d-flex justify-content-center gap-5">
         <button class="btn btn-success" onclick="gerarPDF()">Gerar PDF</button>
-        <a href="index.html"><button class="btn btn-success">Voltar</button></a>
+        <a href="index.html"
+          ><button class="btn btn-dark">Novo plano de Ensino</button></a
+        >
       </div>
     </main>
     <footer>
-      <div class="container d-flex-column">        
-       
-      </div>
+      <div class="container d-flex-column"></div>
     </footer>
 
     <script src="./dados.js"></script>
