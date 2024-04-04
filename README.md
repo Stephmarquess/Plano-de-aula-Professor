@@ -4,7 +4,7 @@ Gerador de relatório de plano de aula simples utilizando HTML, CSS, Bootstrap e
     
 <h2>Status do Projeto</h2>
 
-<li> Finalizada a primeira versão para deploy (04/02/2024) </li>
+<li> Finalizada a primeira versão para deploy (04/02/2024) - Link do deploy: https://meuplano.netlify.app/ </li>
 
 <h2> Implementações realizadas nesta versão </h2>
 <ul>
