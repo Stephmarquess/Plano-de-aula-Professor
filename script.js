@@ -7,12 +7,10 @@ var camposDesabilitados = document.querySelectorAll("select.disabled");
 const erro = document.getElementById("erro");
 
 function habilitarCampos() {
-
   var ano = document.getElementById("ano");
   var disciplina = document.getElementById("disciplina");
   var valorAno = ano.value;
   var valorDisciplina = disciplina.value;
-
 
   camposDesabilitados.forEach(function (campo) {
     campo.disabled = false;
@@ -30,7 +28,6 @@ function habilitarCampos() {
   }
 }
 
-
 function novoRecurso() {
   const inputNovoRecurso = document.createElement("div");
   qtdInput++;
@@ -43,8 +40,7 @@ function novoRecurso() {
 
   novoInput.addEventListener("change", function () {
     valoresInputs[qtdInput - 1] = novoInput.value;
-  }); 
-
+  });
 }
 
 function redirecionar(event) {
@@ -60,7 +56,9 @@ function redirecionar(event) {
   const unidadeTematica = document.getElementById("unidadeTematica").value;
   const habilidades = document.getElementById("habilidades").value;
   const praticasLinguagem = document.getElementById("praticas-linguagem").value;
-  const objetosConhecimento = document.getElementById("objetos-conhecimento").value;
+  const objetosConhecimento = document.getElementById(
+    "objetos-conhecimento"
+  ).value;
   const objetivos = document.getElementById("objetivos").value;
   const recursosDidaticos = [];
   const novoRec = document.getElementsByClassName(".novoRec");
@@ -72,7 +70,7 @@ function redirecionar(event) {
   });
 
   if (novoRec) {
-    recursosDidaticos.push(...valoresInputs);    
+    recursosDidaticos.push(...valoresInputs);
   }
 
   const dadosFormulario = {
@@ -106,7 +104,6 @@ async function listarUnidadesTematicas() {
   const selDisciplina = disciplina.value;
   const selAno = ano.value;
 
-
   if (selDisciplina !== "" && selAno !== "") {
     try {
       const url = await fetch(
@@ -121,7 +118,6 @@ async function listarUnidadesTematicas() {
       }
 
       if (Array.isArray(dados.unidades_tematicas)) {
-  
         dados.unidades_tematicas.forEach((data) => {
           const opcaoTematica = document.createElement("option");
           opcaoTematica.value = data.nome_unidade;
@@ -132,54 +128,53 @@ async function listarUnidadesTematicas() {
     } catch (error) {
       erro.innerHTML = `<div class="alert alert-warning" role="alert">
       Erro ao buscar dados na API. Aguarde uns minutos e atualize a página para tentar novamente.
-    </div>`
-    
+    </div>`;
+
       unidadeTematica.disabled = true;
       objConhecimento.disabled = true;
       habilidades.disabled = true;
-  
     }
   }
 }
 
-function listarHabilidades() {
+async function listarHabilidades() {
   const disciplina = document.getElementById("disciplina");
 
   const selDisciplina = disciplina.value;
 
   if (selDisciplina !== "") {
-    fetch(
-      `https://cientificar1992.pythonanywhere.com/bncc_fundamental/${selDisciplina}/info_habilidades/`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        const listaHabilidades = document.getElementById("habilidades");
+    try {
+      const url = await fetch(
+        `https://cientificar1992.pythonanywhere.com/bncc_fundamental/${selDisciplina}/info_habilidades/`
+      );
 
-        while (listaHabilidades.firstChild) {
-          listaHabilidades.removeChild(listaHabilidades.firstChild);
-        }
+      const dados = await url.json();
 
-        data.forEach((item) => {
-          const opcao = document.createElement("option");
-          opcao.value = item.habilidade;
-          opcao.text = item.habilidade;
-          listaHabilidades.appendChild(opcao);
-        });
-      })
-      .catch((error) => {
-        erro.innerHTML = `<div class="alert alert-warning" role="alert">
-        Erro ao buscar dados na API. Aguarde uns minutos e atualize a página para tentar novamente.
-      </div>`
-      
-        unidadeTematica.disabled = true;
-        objConhecimento.disabled = true;
-        habilidades.disabled = true;
-    
+      const listaHabilidades = document.getElementById("habilidades");
+
+      while (listaHabilidades.firstChild) {
+        listaHabilidades.removeChild(listaHabilidades.firstChild);
+      }
+
+      dados.forEach((item) => {
+        const opcao = document.createElement("option");
+        opcao.value = item.habilidade;
+        opcao.text = item.habilidade;
+        listaHabilidades.appendChild(opcao);
       });
+    } catch (error) {
+      erro.innerHTML = `<div class="alert alert-warning" role="alert">
+        Erro ao buscar dados na API. Aguarde uns minutos e atualize a página para tentar novamente.
+      </div>`;
+
+      unidadeTematica.disabled = true;
+      objConhecimento.disabled = true;
+      habilidades.disabled = true;
+    }
   }
 }
 
-function listarObjetoConhecimento() {
+async function listarObjetoConhecimento() {
   const listaObjetoConhecimento = document.getElementById(
     "objetos-conhecimento"
   );
@@ -207,7 +202,7 @@ function listarObjetoConhecimento() {
             let uniTematicas = item.objeto_conhecimento;
 
             uniTematicas.forEach((element) => {
-              console.log(element);
+   
               const opcaoObjeto = document.createElement("option");
               opcaoObjeto.value = element.nome_objeto;
               opcaoObjeto.text = element.nome_objeto;
@@ -228,40 +223,48 @@ function listarObjetoConhecimento() {
   }
 }
 
-
 function renderizarDados() {
-
-  if (typeof URLSearchParams !== 'undefined') {
-
-    const recursosDidaticos = [];      
-    const recursos = document.querySelectorAll(".recurso:checked").forEach(function (recurso) {recursosDidaticos.push(recurso.value)});        
-    const novoRec = document.getElementsByClassName(".novoRec");     
+  if (typeof URLSearchParams !== "undefined") {
+    const recursosDidaticos = [];
+    const recursos = document
+      .querySelectorAll(".recurso:checked")
+      .forEach(function (recurso) {
+        recursosDidaticos.push(recurso.value);
+      });
+    const novoRec = document.getElementsByClassName(".novoRec");
 
     if (novoRec) {
-      recursosDidaticos.push(...valoresInputs);    
+      recursosDidaticos.push(...valoresInputs);
     }
 
-    document.getElementById('info-professor').textContent = document.getElementById("nome-professor").value;
-    document.getElementById('info-turma').textContent = document.getElementById("turma").value;
-    document.getElementById('info-instituição').textContent = document.getElementById("Instituição").value;
-    document.getElementById('info-disciplina').textContent = document.getElementById("disciplina").value.toUpperCase();
-    document.getElementById('info-unidade-temática').textContent = document.getElementById("unidadeTematica").value;
-    document.getElementById('info-habilidades').textContent =  document.getElementById("habilidades").value;
-    document.getElementById('info-praticas').textContent = document.getElementById("praticas-linguagem").value;
-    document.getElementById('info-objeto-conhecimento').textContent = document.getElementById("objetos-conhecimento").value;  
-    document.getElementById('info-objetivos').textContent = document.getElementById("objetivos").value;       
-    document.getElementById('info-recursos').textContent = recursosDidaticos;           
-    document.getElementById('info-metodologias').textContent = document.getElementById("metodologias").value;
-    document.getElementById('info-avaliação').textContent = document.getElementById("avaliacao").value;
-
-    }     
-
-    else {
-      
-      console.log("Não foi possível capturar valores input");
+    document.getElementById("info-professor").textContent =
+      document.getElementById("nome-professor").value;
+    document.getElementById("info-turma").textContent =
+      document.getElementById("turma").value;
+    document.getElementById("info-instituição").textContent =
+      document.getElementById("Instituição").value;
+    document.getElementById("info-disciplina").textContent = document
+      .getElementById("disciplina")
+      .value.toUpperCase();
+    document.getElementById("info-unidade-temática").textContent =
+      document.getElementById("unidadeTematica").value;
+    document.getElementById("info-habilidades").textContent =
+      document.getElementById("habilidades").value;
+    document.getElementById("info-praticas").textContent =
+      document.getElementById("praticas-linguagem").value;
+    document.getElementById("info-objeto-conhecimento").textContent =
+      document.getElementById("objetos-conhecimento").value;
+    document.getElementById("info-objetivos").textContent =
+      document.getElementById("objetivos").value;
+    document.getElementById("info-recursos").textContent = recursosDidaticos;
+    document.getElementById("info-metodologias").textContent =
+      document.getElementById("metodologias").value;
+    document.getElementById("info-avaliação").textContent =
+      document.getElementById("avaliacao").value;
+  } else {
+    console.log("Não foi possível capturar valores input");
+  }
 }
-}
-  
 
 document.getElementById("ano").addEventListener("input", habilitarCampos);
 
@@ -280,4 +283,3 @@ document
 document
   .getElementById("disciplina")
   .addEventListener("change", listarObjetoConhecimento);
-
