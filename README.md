@@ -2,12 +2,14 @@
 Gerador de relatório de plano de aula simples utilizando HTML, CSS, Bootstrap e JavaScript para auxiliar professores de ensino fundamental na confecção de plano de aula com base nas informações do BNCC. 
 
 <div align="center">
-<strong> <a href="https://www.loom.com/share/1f53e0d9c90c4d2bbc1155c02576a329?t=73&sid=1be4ee20-7925-4ce7-ad7e-5a8d093f2675" target="_blank" > Demonstração do Projeto </a></strong>
+    
+<strong> <a href="https://drive.google.com/file/d/1zzvzLswHPcMrRkBp60nI9Ih4mKFGzNQT/preview" target="_blank" > Demonstração do Projeto </a></strong><br><br>
+<strong><a href="https://meuplano.netlify.app/" target="_blank">Link do deploy </strong></a>
 </div>
     
 <h2>Status do Projeto</h2>
 
-<li> Finalizada a primeira versão para deploy (04/02/2024) - Link do deploy: https://meuplano.netlify.app/ </li>
+<li> Finalizada a primeira versão para deploy (04/02/2024) </li> 
 
 <h2> Implementações realizadas nesta versão </h2>
 <ul>
