@@ -9,7 +9,7 @@ Gerador de relatório de plano de aula simples utilizando HTML, CSS, Bootstrap e
     
 <h2>Status do Projeto</h2>
 
-<li> Finalizada a primeira versão para deploy (04/02/2024) </li> 
+<li> Finalizada a primeira versão para deploy (04/04/2024) </li> 
 
 <h2> Implementações realizadas nesta versão </h2>
 <ul>
@@ -18,7 +18,7 @@ Gerador de relatório de plano de aula simples utilizando HTML, CSS, Bootstrap e
 
 <h2> Próximas atualizações </h2>
 <ul>
-  <li> Adicionar recursos para professores do Ensino Médio </li>  
+  <li> Adicionar recursos para professores do Ensino Médio (previsão: Maio/2024) </li>  
 </ul>
 
 <h2>Tecnologias utilizadas </h2>
